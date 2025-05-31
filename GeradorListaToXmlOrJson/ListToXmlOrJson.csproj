@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Generic list serializer for XML or Json file</Title>
+    <Authors>NandoDeveloper</Authors>
+    <Description>A lightweight and easy-to-use .NET 6 library for exporting generic lists of objects to JSON or XML files. ListToXmlOrJson uses only native .NET serialization, requires no external dependencies, and provides a simple static API for quick integration into your projects.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>
