@@ -10,8 +10,4 @@
     <Description>A lightweight and easy-to-use .NET 6 library for exporting generic lists of objects to JSON or XML files. ListToXmlOrJson uses only native .NET serialization, requires no external dependencies, and provides a simple static API for quick integration into your projects.</Description>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
 </Project>
