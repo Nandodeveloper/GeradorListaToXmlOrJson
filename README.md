@@ -1,65 +1,134 @@
-# Generic List Serializer DLL
+# ListToXmlOrJson ✨  
 
-## Features
-✔ **Generic List Support** – Works with any type of object in a `List<T>`.  
-✔ **XML Serialization** – Converts objects into well-formatted XML.  
-✔ **JSON Serialization** – Generates JSON strings from objects.  
-✔ **Easy Integration** – Simply reference the DLL in your project.
+**A Simple & Elegant .NET Data Export Utility**  
 
-## How to Use
-### 1. Adding the DLL to Your Project
-Reference the `GenericListSerializer.dll` in your project. Import the namespace:
-```csharp
-using GenericListSerializer;
+![.NET Version](https://img.shields.io/badge/.NET-6.0+-512BD4?logo=dotnet&logoColor=white)  
+[![NuGet Version](https://img.shields.io/nuget/v/ListToXmlOrJson)](https://www.nuget.org/packages/ListToXmlOrJson/)  
+![No Dependencies](https://img.shields.io/badge/dependencies-none-success)  
+
+Effortlessly export any `List<T>` to **JSON** or **XML** files with just one line of code! Built with native .NET libraries – no external dependencies.  
+
+---  
+
+## 🚀 Features  
+
+✔ **One-method solution** – Simple and intuitive API  
+✔ **Supports any object type** – Fully generic implementation  
+✔ **Native .NET serialization** – Uses `System.Text.Json` and `System.Xml.Serialization`  
+✔ **Lightweight** – Zero external dependencies  
+✔ **Robust error handling** – Validates inputs and throws meaningful exceptions  
+
+---  
+
+## 📦 Installation  
+
+### Via NuGet Package Manager:  
+```bash
+Install-Package ListToXmlOrJson
 ```
-### 2. Ensure your class is serializable
+### Or using .NET CLI:
+```bash
+dotnet add package ListToXmlOrJson
+```
+
+---
+
+## 🛠 Usage
+
+1️⃣ **Define your model**
 ```csharp
-[Serializable]
+//Example code:
 public class Person
 {
     public string Name { get; set; }
     public int Age { get; set; }
 }
 ```
-### 2. Serializing a List to XML
+2️⃣ **Prepare your data**
 ```csharp
-List<Person> people = new List<Person>
+//Example code:
+var people = new List<Person>
 {
-    new Person { Name = "Alice", Age = 30 },
-    new Person { Name = "Bob", Age = 25 }
+    new Person { Name = "John", Age = 30 },
+    new Person { Name = "Mary", Age = 25 }
 };
-
-//Params: file name, list and file format (JSON = 1; XML = 2)
-ExportData.SaveData("people", people, 2);
 ```
-### 3. Serializing a List to JSON
+3️⃣ **Export to JSON or XML**
 ```csharp
+//Example code:
+using ListToXmlOrJson;
 
-//Params: file name, list and file format (JSON = 1; XML = 2)
-ExportData.SaveData("people", people, 1);
+// Export to JSON
+ExportData<Person>.SaveData("people", people, ExportData<Person>.FileFormat.Json);
+
+// Export to XML
+ExportData<Person>.SaveData("people", people, ExportData<Person>.FileFormat.Xml);
 ```
-## File Location
-**The serialized files will be generated in your solution's output folder, typically following this path structure:**
+This generates:
 
-`C:\YourSolutionName\YourProjectName\bin\Debug\net6.0\yourfilename.json`
+📄 `people.json`
 
-`C:\YourSolutionName\YourProjectName\bin\Debug\net6.0\yourfilename.xml`
-#
-*1. Navigate to your project's folder*
-
-*2. Go to `bin > Debug > net6.0`*
-
-*3. Look for your generated JSON/XML files*
-
-## Requirements
-✔ **.NET Framework 4.7.2+ or .NET Core 3.1+**
-
-✔ **System.Text.Json (for JSON serialization)**
-
-✔ **System.Xml.Serialization (for XML serialization)**
+📄 `people.xml`
 
 ---
 
-**🚀 Developed by NandoDeveloper**  
+## 📜 API Reference
+`ExportData<T>.SaveData`
+```csharp
+public static void SaveData(string file, List<T> data, FileFormat fileFormat)
+```
+| Parameter    | Type         | Description                          |
+|--------------|:------------:|--------------------------------------|
+| `file`       | `string`     | Output filename (without extension)  |
+| `data`       | `List<T>`    | Collection of objects to export      |
+| `fileFormat` | `FileFormat` | Export format (`Json` or `Xml`)      |
+
+**Exceptions:**
+- ⚠️ ArgumentNullException → If data is null
+- ⚠️ Exception → If an unsupported format is provided
+
+---
+
+## ❓ Why Use This?
+
+✔ **No complex setup** – Works out of the box  
+✔ **Clean and maintainable** – Single responsibility principle  
+✔ **Production-ready** – Proper error handling  
+✔ **Lightweight** – No bloat, just pure functionality  
+
+---
+
+## 🌟 Example Output
+**JSON (`people.json`)**
+```json
+[
+  {
+    "Name": "John",
+    "Age": 30
+  },
+  {
+    "Name": "Mary",
+    "Age": 25
+  }
+]
+```
+**XML (`people.xml`)**
+```xml
+<ArrayOfPerson>
+  <Person>
+    <Name>John</Name>
+    <Age>30</Age>
+  </Person>
+  <Person>
+    <Name>Mary</Name>
+    <Age>25</Age>
+  </Person>
+</ArrayOfPerson>
+```
+
+---
+
+**🌐 Developed by NandoDeveloper**  
+
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/NandoDeveloper)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/fernandoodeveloper/)
